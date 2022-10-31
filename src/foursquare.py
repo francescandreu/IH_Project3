@@ -3,10 +3,10 @@ import requests
 from dotenv import load_dotenv
 
 # ------------------------------------------ GET ------------------------------------------
-def getNearbyResults(query, location, radius):
+def getNearbyResults(query, location, radius=2000, limit=50):
     token_fsq = os.getenv("fs_api_key")
     ll = f"{location[1]}%2C{location[0]}"
-    url = f"https://api.foursquare.com/v3/places/search?query={query}&ll={ll}&radius={str(radius)}&limit=50&sort=DISTANCE"
+    url = f"https://api.foursquare.com/v3/places/search?query={query}&ll={ll}&radius={str(radius)}&limit={str(limit)}&sort=DISTANCE"
 
     headers = {
         "accept": "application/json",
@@ -18,7 +18,7 @@ def getVenue(query, location):
     token_fsq = os.getenv("fs_api_key")
     ll = f"{location[1]}%2C{location[0]}"
     url = f"https://api.foursquare.com/v3/places/search?query={query}&ll={ll}&limit=1"
-    
+
     headers = {
         "accept": "application/json",
         "Authorization": token_fsq,
